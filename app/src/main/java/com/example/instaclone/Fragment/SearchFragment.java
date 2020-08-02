@@ -36,7 +36,7 @@ public class SearchFragment extends Fragment {
     private UserAdapter userAdapter;
     private List<User> mUsers;
 
-    EditText serach_bar;
+    EditText search_bar;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,14 +47,14 @@ public class SearchFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        serach_bar = view.findViewById(R.id.search_bar);
+        search_bar = view.findViewById(R.id.search_bar);
 
         mUsers = new ArrayList<>();
         userAdapter = new UserAdapter(getContext(),mUsers);
         recyclerView.setAdapter(userAdapter);
 
         readUsers();
-        serach_bar.addTextChangedListener(new TextWatcher() {
+        search_bar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -101,7 +101,7 @@ public class SearchFragment extends Fragment {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (serach_bar.getText().toString().equals("")){
+                if (search_bar.getText().toString().equals("")){
                     mUsers.clear();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                         User user = snapshot.getValue(User.class);
